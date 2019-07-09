@@ -1,7 +1,9 @@
-// import { NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 
-// @NgModule({
-//   declarations: [],
-//   exports: [],
-// })
-// export class SharedModule {}
+import { CapitalizePipe } from './capitalize.pipe';
+
+@NgModule({
+  declarations: [CapitalizePipe],
+  exports: [CapitalizePipe],
+})
+export class SharedModule {}
