@@ -8,7 +8,6 @@ import { ICustomer } from '../../shared/interfaces';
 })
 export class CustomersListComponent implements OnInit {
   private _customers: ICustomer[] = [];
-
   @Input() get customers(): ICustomer[] {
     return this._customers;
   }
@@ -34,6 +33,22 @@ export class CustomersListComponent implements OnInit {
       this.customersOrderTotal += cust.orderTotal;
     });
   }
+
+  filter(data: string) {
+    if (data) {
+      this.filteredCustomers = this.customers.filter((cust: ICustomer) => {
+        return (
+          cust.name.toLowerCase().indexOf(data.toLowerCase()) > -1 ||
+          cust.city.toLowerCase().indexOf(data.toLowerCase()) > -1 ||
+          cust.orderTotal.toString().indexOf(data) > -1
+        );
+      });
+    } else {
+      this.filteredCustomers = this.customers;
+    }
+    this.calculateOrders();
+  }
+
   sort(prop: string) {
     // A sorter service will handle the sorting
   }
